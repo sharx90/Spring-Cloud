@@ -1,0 +1,46 @@
+
+---
+server:
+  port: 8001
+
+spring:
+  application:
+    name: movie
+  profiles: movie1
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+---
+server:
+  port: 8002
+
+spring:
+  application:
+    name: movie
+  profiles: movie2
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+---
+server:
+  port: 8003
+
+spring:
+  application:
+    name: movie
+  profiles: movie3
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+---

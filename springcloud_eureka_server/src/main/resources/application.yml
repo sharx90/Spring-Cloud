@@ -1,0 +1,78 @@
+---
+server:
+  port: 7001
+
+spring:
+  application:
+    name: server
+  profiles: server01
+
+eureka:
+  instance:
+    hostname: server01.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://server02.com:7002/eureka/,http://server03.com:7003/eureka/
+  server:
+    # 关闭自我保护机制
+    enable-self-preservation: false
+    # 设置剔除服务的时间
+    eviction-interval-timer-in-ms: 2000
+
+
+logging:
+    level:
+      com.netflix: warn
+---
+server:
+  port: 7002
+
+spring:
+  application:
+    name: server
+  profiles: server02
+
+eureka:
+  instance:
+    hostname: server02.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://server01.com:7001/eureka/,http://server03.com:7003/eureka/
+  server:
+    # 关闭自我保护机制
+    enable-self-preservation: false
+    # 设置剔除服务的时间
+    eviction-interval-timer-in-ms: 2000
+logging:
+    level:
+      com.netflix: warn
+
+---
+server:
+  port: 7003
+
+spring:
+  application:
+    name: server
+  profiles: server03
+
+eureka:
+  instance:
+    hostname: server03.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://server01.com:7001/eureka/,http://server02.com:7002/eureka/
+  server:
+    # 关闭自我保护机制
+    enable-self-preservation: false
+    # 设置剔除服务的时间
+    eviction-interval-timer-in-ms: 2000
+logging:
+    level:
+      com.netflix: warn

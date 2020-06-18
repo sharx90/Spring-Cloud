@@ -1,0 +1,4 @@
+# Project exclude paths
+/springcloud_eureka_server/target/
+/springcloud_movie/target/
+/springcloud_user/target/
